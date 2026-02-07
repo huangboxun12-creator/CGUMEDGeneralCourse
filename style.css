@@ -1,0 +1,15 @@
+/* 設定顏色：使用長庚大學常見的深藍色系 */
+body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; background: #f0f2f5; margin: 0; }
+header { background: #003a6c; color: white; text-align: center; padding: 40px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.btn { display: inline-block; background: #ffc107; color: #333; padding: 12px 24px; text-decoration: none; border-radius: 30px; margin-top: 15px; font-weight: bold; transition: 0.3s; }
+.btn:hover { background: #e0a800; transform: scale(1.05); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: auto; }
+.card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; border-top: 5px solid #003a6c; }
+.card:hover { transform: translateY(-5px); }
+
+.card h3 { margin-top: 0; color: #003a6c; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.score-box { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+.score-tag { background: #e7eff6; color: #003a6c; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
+.comment { background: #f9f9f9; padding: 15px; border-radius: 8px; color: #555; font-size: 0.95rem; line-height: 1.6; border-left: 4px solid #ddd; }
+.timestamp { font-size: 0.7rem; color: #bbb; margin-top: 15px; text-align: right; }
