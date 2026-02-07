@@ -1,4 +1,4 @@
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8cTxUPOSQA1ypJytbZ01-CX5qXM-iXExvbaBOpWATCade5xf3WYsKLrdhbrBOAiegZiefn97HgGlv/pub?gid=313985456&single=true&output=csv";
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8cTxUPOSQA1ypJytbZ01-CX5qXM-iXExvbaBOpWATCade5xf3WYsKLrdhbrBOAiegZiefn97HgGlv/pub?output=csv";
 
 async function loadReviews() {
     try {
