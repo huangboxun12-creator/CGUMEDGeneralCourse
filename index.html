@@ -5,90 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>長庚醫學系通識心得網</title>
     <style>
-        /* 繼承 everyclass.css 風格 */
-        body { background-color: #f0f2f5; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; }
-        .label_title { font-size: 25px; font-weight: bold; width: 95%; max-width: 600px; text-align: center; color: black; background-color: #87e967; padding: 15px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; }
-        .label_info { font-size: 18px; font-weight: bold; width: 95%; max-width: 600px; text-align: center; color: black; background-color: #fddb69; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; }
-        .label_comment { font-size: 16px; width: 95%; max-width: 600px; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 15px; text-align: left; line-height: 1.6; }
-        .btn_menu { font-size: 18px; font-weight: bold; width: 95%; max-width: 600px; background-color: #7edcfc; border-radius: 10px; padding: 15px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 3px #29c6fa; margin: 8px 0; transition: 0.2s; }
-        .btn_menu:hover { transform: scale(1.02); background-color: #58d2fb; }
-        .btn_back { background-color: #bbb; box-shadow: 3px 3px 3px #888; width: auto; min-width: 120px; margin-bottom: 20px; }
+        /* 整合 MMC 與 Everyclass 的精華樣式 */
+        body { background-color: #eeeeee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; }
+        
+        /* 標題與資訊區 */
+        .label_title { font-size: 25px; font-weight: bold; width: 500px; line-height: 24px; text-align: center; color: black; background-color: #87e967; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; }
+        .label_info { font-size: 20px; font-weight: bold; width: 500px; text-align: center; color: black; background-color: #fddb69; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; }
+        
+        /* 容器 */
+        .index_choosebox { margin: 10px auto; width: 500px; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; }
+
+        /* 按鈕樣式 */
+        .btn_course { appearance: none; width: 450px; font-size: 20px; font-weight: bold; text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 3px #29c6fa; margin: 10px 0; white-space: pre-wrap; transition: 0.2s; }
+        .btn_course:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #29c6fa; }
+
+        /* 投稿按鈕 (特別利用 label_contribution) */
+        .label_contribution { width: 500px; font-size: 20px; font-weight: bold; text-align: center; color: black; background-color: #FFD2D7; border-radius: 10px; padding: 15px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 3px #d06f79; text-decoration: none; display: block; margin: 20px 0; }
+
+        /* 心得顯示區 */
+        .label_comment { font-size: 18px; width: 500px; line-height: 28px; text-align: left; color: black; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 20px; }
+
+        /* 導覽按鈕組 */
+        .nav_group { display: flex; gap: 10px; width: 500px; justify-content: center; }
+        .nav_group .btn_course { width: 240px; font-size: 16px; background-color: #bbb; box-shadow: 3px 3px 0px #888; }
+
+        /* 手機版適配 */
+        @media screen and (max-width:600px){
+            .label_title, .label_info, .index_choosebox, .btn_course, .label_contribution, .label_comment, .nav_group { width: 90% !important; }
+            .nav_group .btn_course { width: 48% !important; }
+        }
+
         .layer { display: none; width: 100%; flex-direction: column; align-items: center; }
         .active { display: flex; }
-        hr { border: 1px dashed #000; margin: 10px 0; }
-
-        .btn_group_nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px; /* 按鈕之間的間距 */
-            width: 95%;
-            max-width: 600px;
-            margin-bottom: 10px;
-        }
-
-        .btn_group_nav .btn_back {
-            flex: 1; /* 讓兩個按鈕平分寬度 */
-            margin: 0; /* 移除原本預設的 margin 避免跑位 */
-        }
-
-        @media screen and (max-width:600px) {
-            .btn_group_nav {
-                width: 90%;
-            }
-        }
-        
-        </style>
+    </style>
 </head>
 <body>
 
     <div class="label_title">長庚醫學系通識心得網 📚</div>
+    
+    <a href="https://forms.gle/6yTjFRWBnxJTjLMT8" target="_blank" class="label_contribution">✍️ 我要投稿心得 (點我)</a>
 
     <main style="width: 100%; display: flex; flex-direction: column; align-items: center;">
         
         <div id="layer1" class="layer active">
             <div class="label_info">請選擇類別</div>
-            <button class="btn_menu" onclick="showLayer2('核心')">核心通識</button>
-            <button class="btn_menu" onclick="showLayer2('多元')">多元通識</button>
+            <div class="index_choosebox">
+                <button class="btn_course" onclick="showLayer2('核心')">核心通識</button>
+                <button class="btn_course" onclick="showLayer2('多元')">多元通識</button>
+            </div>
         </div>
 
         <div id="layer2" class="layer">
-            <button class="btn_menu btn_back" onclick="switchLayer(1)">⬅️ 返回首頁</button>
+            <button class="btn_course nav_group" style="background-color:#bbb; width:auto; padding:10px 20px;" onclick="switchLayer(1)">⬅️ 返回首頁</button>
             <div id="layer2_title" class="label_info"></div>
-            <div id="sub_cat_container" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
+            <div class="index_choosebox" id="sub_cat_container"></div>
         </div>
 
-       <div id="layer3" class="layer">
-            <div class="btn_group_nav">
-                <button class="btn_menu btn_back" onclick="switchLayer(2)">⬅️ 返回領域</button>
-                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+        <div id="layer3" class="layer">
+            <div class="nav_group">
+                <button class="btn_course" onclick="switchLayer(2)">⬅️ 返回領域</button>
+                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
             </div>
-    
             <div id="layer3_title" class="label_info"></div>
-            <div id="course_list_container" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
-
-            <div class="btn_group_nav" style="margin-top: 20px; margin-bottom: 50px;">
-                <button class="btn_menu btn_back" onclick="switchLayer(2)">⬅️ 返回領域</button>
-                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+            <div class="index_choosebox" id="course_list_container"></div>
+            <div class="nav_group">
+                <button class="btn_course" onclick="switchLayer(2)">⬅️ 返回領域</button>
+                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
             </div>
         </div>
 
         <div id="layer4" class="layer">
-            <div class="btn_group_nav">
-                <button class="btn_menu btn_back" onclick="switchLayer(3)">⬅️ 返回清單</button>
-                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+            <div class="nav_group">
+                <button class="btn_course" onclick="switchLayer(3)">⬅️ 返回清單</button>
+                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
             </div>
-
             <div id="final_title" class="label_title"></div>
-            <div id="course_info_box" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
-    
-            <div id="reviews_container" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
-
-            <div class="btn_group_nav" style="margin-top: 20px; margin-bottom: 50px;">
-                <button class="btn_menu btn_back" onclick="switchLayer(3)">⬅️ 返回清單</button>
-                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+            <div id="course_info_box"></div>
+            <div id="reviews_container"></div>
+            <div class="nav_group">
+                <button class="btn_course" onclick="switchLayer(3)">⬅️ 返回清單</button>
+                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
             </div>
         </div>
-        
+
     </main>
 
 <script>
