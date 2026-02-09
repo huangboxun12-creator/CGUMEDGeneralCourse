@@ -5,106 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
     <title>長庚醫學系通識分享區</title>
     <style>
-        /* 整合 MMC 風格與 Everyclass 精華 */
+        /* 核心 MMC 風格基礎 */
         body { background-color: #eeeeee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; }
         #index_frame { width: 100%; max-width: 600px; text-align: center; }
         
-        /* 標題與資訊欄 */
-        .label_title { font-size: 25px; font-weight: bold; width: 100%; line-height: 24px; text-align: center; color: black; background-color: #87e967; padding: 15px; border-radius: 10px; border: 3px solid #000; display: block; box-sizing: border-box; }
+        /* 標題與資訊框 (Neo-Brutalism Style) */
+        .label_title { font-size: 25px; font-weight: bold; width: 100%; line-height: 24px; text-align: center; color: black; background-color: #87e967; padding: 15px; border-radius: 10px; border: 3px solid #000; display: block; box-sizing: border-box; margin-bottom: 10px; }
         .label_info { font-size: 18px; font-weight: bold; width: 100%; text-align: center; color: black; background-color: #fddb69; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; display: block; box-sizing: border-box; }
         
-        /* MMC 經典容器 */
-        .index_choosebox { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .index_choosebox2 { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-style: dashed; }
+        /* MMC 容器樣式 */
+        .index_choosebox { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; }
 
-        /* 按鈕樣式 */
-        .btn_home { appearance: none; width: 100%; font-size: 18px; font-weight: bold; text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 0px #29c6fa; transition: 0.1s; }
+        /* 按鈕樣式 (繼承 MMC btn_home) */
+        .btn_home { appearance: none; width: 100%; font-size: 18px; font-weight: bold; text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 0px #29c6fa; margin: 8px 0; transition: 0.1s; white-space: pre-wrap; }
         .btn_home:active { transform: translate(2px, 2px); box-shadow: none; }
-        .btn_home2 { background-color: #FFD2D7; box-shadow: 3px 3px 0px #d06f79; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; border-radius: 10px; border: 3px solid #000; cursor: pointer; }
+        
+        /* 功能按鈕 (我要貢獻樣式) */
+        .btn_contribution { background-color: #FFD2D7; box-shadow: 3px 3px 0px #d06f79; width: 100%; font-size: 18px; font-weight: bold; padding: 12px; border-radius: 10px; border: 3px solid #000; cursor: pointer; margin-bottom: 15px; display: block; text-decoration: none; color: black; }
 
-        /* 心得卡片 */
-        .label_comment { font-size: 16px; width: 100%; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 15px; text-align: left; box-sizing: border-box; }
+        /* 心得顯示區 (套用學長 label_comment) */
+        .label_comment { font-size: 16px; width: 100%; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 15px; text-align: left; box-sizing: border-box; line-height: 1.6; }
 
-        /* 底部資訊 */
-        .label_coder { font-size: 14px; color: #555; margin-top: 20px; }
-        .last_update { font-size: 12px; color: #888; cursor: pointer; text-decoration: underline; }
+        /* 雙重導航組 */
+        .nav_group { display: flex; gap: 10px; width: 100%; margin-top: 5px; margin-bottom: 5px; }
+        .nav_group .btn_home { font-size: 16px; background-color: #bbb; box-shadow: 2px 2px 0#777; flex: 1; }
+        .nav_group .btn_home_active { background-color: #7edcfc; box-shadow: 2px 2px 0#29c6fa; }
 
-        /* 層級切換 */
+        /* 結構層級控制 */
         .layer { display: none; width: 100%; flex-direction: column; align-items: center; }
         .active { display: flex; }
-        .nav_group { display: flex; gap: 10px; width: 100%; margin-bottom: 10px; }
-        
+
         @media screen and (max-width:600px){
             #index_frame { width: 95%; }
         }
     </style>
 </head>
+
+<p style="font-size: 14px; color: #555; margin-top: 40px; line-height: 1.8;">
+    <b>Coded by</b> <a href="https://github.com/huangboxun12-creator" target="_blank" style="color:#003a6c; text-decoration:none;">huangboxun12</a> & <b>AI Assistant (Gemini)</b><br>
+    <span style="font-size: 12px; color: #888; cursor: pointer; text-decoration: underline;" onclick="location.reload()">最後更新: 2026/02/09</span>
+</p>
+    
 <body>
 
 <div id="index_frame">
     <label class="label_title">長庚醫學系通識分享區 📚</label>
-    
-    <div id="layer1" class="layer active">
-        <label class="label_info">請點選領域查詢課程<br>心得採 1-10 分制，數字越大越推薦</label>
-        
-        <div class="index_choosebox">
-            <input type="button" class="btn_home" value="天 (自然科學)" onclick="showLayer2('核心', '藝術與人文思維')">
-            <input type="button" class="btn_home" value="地 (社會科學)" onclick="showLayer2('核心', '公民與社會探究')">
-            <input type="button" class="btn_home" value="人 (人文藝術)" onclick="showLayer2('核心', '哲學與道德思考')">
-            <input type="button" class="btn_home" value="我 (心理自我)" onclick="showLayer2('多元', '社會科學領域')">
-            </div>
 
-        <div class="index_choosebox2">
-            <input type="button" class="btn_home2" value="我要貢獻" onclick="window.open('https://forms.gle/6yTjFRWBnxJTjLMT8')">
-            <input type="button" class="btn_home2" value="介面說明" onclick="alert('點擊領域 > 選擇課程 > 查看學長姐心得！')">
-            <input type="button" class="btn_home2" value="課程資源" onclick="window.open('你的雲端硬碟連結')">
-            <input type="button" class="btn_home2" value="聯絡學會" onclick="location.href='mailto:your-email@example.com'">
+    <div id="layer1" class="layer active">
+        <label class="label_info">請選擇通識類別</label>
+        <div class="index_choosebox">
+            <button class="btn_home" onclick="showLayer2('核心')">核心通識 (天、地、人、我)</button>
+            <button class="btn_home" onclick="showLayer2('多元')">多元通識 (自然、社會、人文)</button>
         </div>
+        <a href="https://forms.gle/6yTjFRWBnxJTjLMT8" target="_blank" class="btn_contribution">✍️ 我要投稿心得 (點我)</a>
     </div>
 
     <div id="layer2" class="layer">
         <div class="nav_group">
-            <input type="button" class="btn_home" style="background:#bbb; box-shadow: 2px 2px 0#777;" value="⬅️ 返回首頁" onclick="switchLayer(1)">
+            <button class="btn_home" onclick="switchLayer(1)">⬅️ 返回首頁</button>
         </div>
         <label id="layer2_title" class="label_info"></label>
-        <div class="index_choosebox" id="course_list_container" style="display:flex; flex-direction:column;"></div>
+        <div class="index_choosebox" id="sub_cat_container"></div>
     </div>
 
     <div id="layer3" class="layer">
         <div class="nav_group">
-            <input type="button" class="btn_home" style="background:#bbb; box-shadow: 2px 2px 0#777;" value="⬅️ 返回列表" onclick="switchLayer(2)">
-            <input type="button" class="btn_home" value="🏠 回首頁" onclick="switchLayer(1)">
+            <button class="btn_home" onclick="switchLayer(2)">⬅️ 返回領域</button>
+            <button class="btn_home btn_home_active" onclick="switchLayer(1)">🏠 回首頁</button>
         </div>
-        <label id="final_title" class="label_title"></label>
-        <div id="course_info_box"></div>
-        <div id="reviews_container" style="width:100%;"></div>
-        <div class="nav_group" style="margin-top:10px;">
-            <input type="button" class="btn_home" style="background:#bbb; box-shadow: 2px 2px 0#777;" value="⬅️ 返回列表" onclick="switchLayer(2)">
-            <input type="button" class="btn_home" value="🏠 回首頁" onclick="switchLayer(1)">
+        <label id="layer3_title" class="label_info"></label>
+        <div class="index_choosebox" id="course_list_container"></div>
+        <div class="nav_group">
+            <button class="btn_home" onclick="switchLayer(2)">⬅️ 返回領域</button>
+            <button class="btn_home btn_home_active" onclick="switchLayer(1)">🏠 回首頁</button>
         </div>
     </div>
 
-    <p class="label_coder"><b>Coded by</b> huangboxun12 & AI Assistant(Gemini)<br>
-       <span class="last_update" onclick="location.reload()">最後更新: 2026/02/09</span>
-    </p>
+    <div id="layer4" class="layer">
+        <div class="nav_group">
+            <button class="btn_home" onclick="switchLayer(3)">⬅️ 返回列表</button>
+            <button class="btn_home btn_home_active" onclick="switchLayer(1)">🏠 回首頁</button>
+        </div>
+        <label id="final_title" class="label_title"></label>
+        <div id="course_info_box" style="width: 100%;"></div>
+        <div id="reviews_container" style="width: 100%;"></div>
+        <div class="nav_group">
+            <button class="btn_home" onclick="switchLayer(3)">⬅️ 返回列表</button>
+            <button class="btn_home btn_home_active" onclick="switchLayer(1)">🏠 回首頁</button>
+        </div>
+    </div>
+
+    <p style="font-size: 12px; color: #888; margin-top: 30px;">Coded by huangboxun12 & AI Assistant(Gemini)<br>最後更新: 2026/02/09</p>
 </div>
 
 <script>
-// --- 寫死的課程資訊資料庫 ---
+// --- 預載課程資料 (請將您的 Sheet 資料填入此處) ---
 const courseData = {
     "核心": {
-        "藝術與人文思維": [
-            { id: "A2826", name: "歌劇與歌劇院", teacher: "廖婉如", credit: 2, info: "...", grading: "..." },
-            { id: "A2827", name: "現代詩與當代文化", teacher: "向陽", credit: 2, info: "...", grading: "..." }
+        "藝術與人文思維 (人)": [
+            { id: "A2826", name: "歌劇與歌劇院", teacher: "廖婉如", credit: 2, info: "音樂藝術介紹", grading: "期末50%" }
         ],
-        "公民與社會探究": [
-            { id: "A2846", name: "醫學與法律", teacher: "陳仲隆", credit: 2, info: "...", grading: "..." }
+        "公民與社會探究 (地)": [
+            { id: "A2846", name: "醫學與法律", teacher: "陳仲隆", credit: 2, info: "法律實務", grading: "期末100%" }
+        ]
+    },
+    "多元": {
+        "自然科學領域": [
+            { id: "B1234", name: "環境保護", teacher: "李明", credit: 2, info: "生態介紹", grading: "心得100%" }
         ]
     }
-    // ...以此類推
 };
 
-const csvUrl = "你的Google_CSV連結";
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8cTxUPOSQA1ypJytbZ01-CX5qXM-iXExvbaBOpWATCade5xf3WYsKLrdhbrBOAiegZiefn97HgGlv/pub?gid=313985456&single=true&output=csv";
 let allReviews = [];
 
 async function loadReviews() {
@@ -119,40 +131,69 @@ async function loadReviews() {
             cool: row[9] || row[17] || row[25] || "?",
             comment: (row[12] || row[20] || row[28] || "").replace(/"/g, '')
         }));
-    } catch(e) { console.error(e); }
+    } catch(e) { console.error("心得載入失敗", e); }
 }
 
-function showLayer2(main, sub) {
+let curMain = "";
+let curSub = "";
+
+function showLayer2(main) {
+    curMain = main;
     switchLayer(2);
-    document.getElementById('layer2_title').innerText = sub;
-    const container = document.getElementById('course_list_container');
-    const courses = courseData[main][sub] || [];
-    container.innerHTML = courses.map(c => 
-        `<input type="button" class="btn_home" value="${c.name} (${c.teacher})" onclick="showFinal('${main}', '${sub}', '${c.name}')">`
+    document.getElementById('layer2_title').innerText = "領域選擇：" + main;
+    const container = document.getElementById('sub_cat_container');
+    container.innerHTML = Object.keys(courseData[main]).map(sub => 
+        `<button class="btn_home" onclick="showLayer3('${sub}')">${sub}</button>`
     ).join('');
 }
 
-function showFinal(main, sub, cName) {
+function showLayer3(sub) {
+    curSub = sub;
     switchLayer(3);
-    const course = courseData[main][sub].find(c => c.name === cName);
-    document.getElementById('final_title').innerText = cName;
+    document.getElementById('layer3_title').innerText = "課程清單：" + sub;
+    const container = document.getElementById('course_list_container');
+    container.innerHTML = courseData[curMain][sub].map(c => 
+        `<button class="btn_home" onclick="showFinal('${c.name}')">${c.name} (${c.teacher})</button>`
+    ).join('');
+}
+
+function showFinal(cName) {
+    switchLayer(4);
+    const course = courseData[curMain][curSub].find(c => c.name === cName);
+    
+    // 顯示課程基本資訊
+    document.getElementById('final_title').innerText = `${course.id} ｜ ${cName}`;
     document.getElementById('course_info_box').innerHTML = `
-        <div class="label_info" style="background:#fff">${course.teacher} | ${course.id} | ${course.credit}學分</div>
-        <div class="label_comment" style="background:#eee"><b>簡介：</b>${course.info}<br><b>評分：</b>${course.grading}</div>
+        <div class="label_info">${course.teacher} | ${course.credit}學分</div>
+        <div class="label_comment" style="background:#f9f9f9"><b>簡介：</b>${course.info}<br><b>評分：</b>${course.grading}</div>
     `;
 
     const reviews = allReviews.filter(r => r.name === cName);
-    document.getElementById('reviews_container').innerHTML = reviews.length ? reviews.map(r => `
-        <div class="label_comment">
-            <b>1142 | ⭐${r.overall} | 🍬${r.sweet} | ❄️${r.cool}</b><br><br>
-            ${r.comment.replace(/\n/g, '<br>')}
-        </div>
-    `).join('') : '<div class="label_info">尚無心得🫠</div>';
+    const rContainer = document.getElementById('reviews_container');
+
+    // --- 這裡就是你要加入的判斷邏輯 ---
+    if (reviews.length > 0) {
+        // 如果有心得，就顯示心得列表
+        rContainer.innerHTML = reviews.map(r => `
+            <div class="label_comment">
+                <b>學期 ｜ ⭐${r.overall} ｜ 🍬${r.sweet} ｜ ❄️${r.cool}</b><br><br>
+                ${r.comment.replace(/\n/g, '<br>')}
+            </div>
+        `).join('');
+    } else {
+        // 如果沒有心得，就顯示你微調的那段溫馨提示
+        rContainer.innerHTML = `
+            <div class="label_info" style="background-color: #fddb69; margin-top: 20px;">
+                目前尚無心得，歡迎大家投稿！✨<br>
+                <small>(點擊上方粉紅色按鈕即可分享你的經驗)</small>
+            </div>`;
+    }
 }
 
 function switchLayer(n) {
     document.querySelectorAll('.layer').forEach(l => l.classList.remove('active'));
     document.getElementById('layer' + n).classList.add('active');
+    window.scrollTo(0, 0); // 切換時自動回到最上方
 }
 
 loadReviews();
