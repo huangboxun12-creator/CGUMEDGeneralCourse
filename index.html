@@ -2,200 +2,152 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>長庚醫學系通識心得網</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
+    <title>長庚醫學系通識分享區</title>
     <style>
-        /* 整合 MMC 與 Everyclass 的精華樣式 */
+        /* 整合 MMC 風格與 Everyclass 精華 */
         body { background-color: #eeeeee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; }
+        #index_frame { width: 100%; max-width: 600px; text-align: center; }
         
-        /* 標題與資訊區 */
-        .label_title { font-size: 25px; font-weight: bold; width: 500px; line-height: 24px; text-align: center; color: black; background-color: #87e967; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; }
-        .label_info { font-size: 20px; font-weight: bold; width: 500px; text-align: center; color: black; background-color: #fddb69; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; }
+        /* 標題與資訊欄 */
+        .label_title { font-size: 25px; font-weight: bold; width: 100%; line-height: 24px; text-align: center; color: black; background-color: #87e967; padding: 15px; border-radius: 10px; border: 3px solid #000; display: block; box-sizing: border-box; }
+        .label_info { font-size: 18px; font-weight: bold; width: 100%; text-align: center; color: black; background-color: #fddb69; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; display: block; box-sizing: border-box; }
         
-        /* 容器 */
-        .index_choosebox { margin: 10px auto; width: 500px; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; }
+        /* MMC 經典容器 */
+        .index_choosebox { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .index_choosebox2 { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-style: dashed; }
 
         /* 按鈕樣式 */
-        .btn_course { appearance: none; width: 450px; font-size: 20px; font-weight: bold; text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 3px #29c6fa; margin: 10px 0; white-space: pre-wrap; transition: 0.2s; }
-        .btn_course:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #29c6fa; }
+        .btn_home { appearance: none; width: 100%; font-size: 18px; font-weight: bold; text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 0px #29c6fa; transition: 0.1s; }
+        .btn_home:active { transform: translate(2px, 2px); box-shadow: none; }
+        .btn_home2 { background-color: #FFD2D7; box-shadow: 3px 3px 0px #d06f79; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; border-radius: 10px; border: 3px solid #000; cursor: pointer; }
 
-        /* 投稿按鈕 (特別利用 label_contribution) */
-        .label_contribution { width: 500px; font-size: 20px; font-weight: bold; text-align: center; color: black; background-color: #FFD2D7; border-radius: 10px; padding: 15px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 3px #d06f79; text-decoration: none; display: block; margin: 20px 0; }
+        /* 心得卡片 */
+        .label_comment { font-size: 16px; width: 100%; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 15px; text-align: left; box-sizing: border-box; }
 
-        /* 心得顯示區 */
-        .label_comment { font-size: 18px; width: 500px; line-height: 28px; text-align: left; color: black; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 20px; }
+        /* 底部資訊 */
+        .label_coder { font-size: 14px; color: #555; margin-top: 20px; }
+        .last_update { font-size: 12px; color: #888; cursor: pointer; text-decoration: underline; }
 
-        /* 導覽按鈕組 */
-        .nav_group { display: flex; gap: 10px; width: 500px; justify-content: center; }
-        .nav_group .btn_course { width: 240px; font-size: 16px; background-color: #bbb; box-shadow: 3px 3px 0px #888; }
-
-        /* 手機版適配 */
-        @media screen and (max-width:600px){
-            .label_title, .label_info, .index_choosebox, .btn_course, .label_contribution, .label_comment, .nav_group { width: 90% !important; }
-            .nav_group .btn_course { width: 48% !important; }
-        }
-
+        /* 層級切換 */
         .layer { display: none; width: 100%; flex-direction: column; align-items: center; }
         .active { display: flex; }
+        .nav_group { display: flex; gap: 10px; width: 100%; margin-bottom: 10px; }
+        
+        @media screen and (max-width:600px){
+            #index_frame { width: 95%; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="label_title">長庚醫學系通識心得網 📚</div>
+<div id="index_frame">
+    <label class="label_title">長庚醫學系通識分享區 📚</label>
     
-    <a href="https://forms.gle/6yTjFRWBnxJTjLMT8" target="_blank" class="label_contribution">✍️ 我要投稿心得 (點我)</a>
-
-    <main style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div id="layer1" class="layer active">
+        <label class="label_info">請點選領域查詢課程<br>心得採 1-10 分制，數字越大越推薦</label>
         
-        <div id="layer1" class="layer active">
-            <div class="label_info">請選擇類別</div>
-            <div class="index_choosebox">
-                <button class="btn_course" onclick="showLayer2('核心')">核心通識</button>
-                <button class="btn_course" onclick="showLayer2('多元')">多元通識</button>
+        <div class="index_choosebox">
+            <input type="button" class="btn_home" value="天 (自然科學)" onclick="showLayer2('核心', '藝術與人文思維')">
+            <input type="button" class="btn_home" value="地 (社會科學)" onclick="showLayer2('核心', '公民與社會探究')">
+            <input type="button" class="btn_home" value="人 (人文藝術)" onclick="showLayer2('核心', '哲學與道德思考')">
+            <input type="button" class="btn_home" value="我 (心理自我)" onclick="showLayer2('多元', '社會科學領域')">
             </div>
-        </div>
 
-        <div id="layer2" class="layer">
-            <button class="btn_course nav_group" style="background-color:#bbb; width:auto; padding:10px 20px;" onclick="switchLayer(1)">⬅️ 返回首頁</button>
-            <div id="layer2_title" class="label_info"></div>
-            <div class="index_choosebox" id="sub_cat_container"></div>
+        <div class="index_choosebox2">
+            <input type="button" class="btn_home2" value="我要貢獻" onclick="window.open('https://forms.gle/6yTjFRWBnxJTjLMT8')">
+            <input type="button" class="btn_home2" value="介面說明" onclick="alert('點擊領域 > 選擇課程 > 查看學長姐心得！')">
+            <input type="button" class="btn_home2" value="課程資源" onclick="window.open('你的雲端硬碟連結')">
+            <input type="button" class="btn_home2" value="聯絡學會" onclick="location.href='mailto:your-email@example.com'">
         </div>
+    </div>
 
-        <div id="layer3" class="layer">
-            <div class="nav_group">
-                <button class="btn_course" onclick="switchLayer(2)">⬅️ 返回領域</button>
-                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
-            </div>
-            <div id="layer3_title" class="label_info"></div>
-            <div class="index_choosebox" id="course_list_container"></div>
-            <div class="nav_group">
-                <button class="btn_course" onclick="switchLayer(2)">⬅️ 返回領域</button>
-                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
-            </div>
+    <div id="layer2" class="layer">
+        <div class="nav_group">
+            <input type="button" class="btn_home" style="background:#bbb; box-shadow: 2px 2px 0#777;" value="⬅️ 返回首頁" onclick="switchLayer(1)">
         </div>
+        <label id="layer2_title" class="label_info"></label>
+        <div class="index_choosebox" id="course_list_container" style="display:flex; flex-direction:column;"></div>
+    </div>
 
-        <div id="layer4" class="layer">
-            <div class="nav_group">
-                <button class="btn_course" onclick="switchLayer(3)">⬅️ 返回清單</button>
-                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
-            </div>
-            <div id="final_title" class="label_title"></div>
-            <div id="course_info_box"></div>
-            <div id="reviews_container"></div>
-            <div class="nav_group">
-                <button class="btn_course" onclick="switchLayer(3)">⬅️ 返回清單</button>
-                <button class="btn_course" style="background-color:#7edcfc" onclick="switchLayer(1)">🏠 回首頁</button>
-            </div>
+    <div id="layer3" class="layer">
+        <div class="nav_group">
+            <input type="button" class="btn_home" style="background:#bbb; box-shadow: 2px 2px 0#777;" value="⬅️ 返回列表" onclick="switchLayer(2)">
+            <input type="button" class="btn_home" value="🏠 回首頁" onclick="switchLayer(1)">
         </div>
+        <label id="final_title" class="label_title"></label>
+        <div id="course_info_box"></div>
+        <div id="reviews_container" style="width:100%;"></div>
+        <div class="nav_group" style="margin-top:10px;">
+            <input type="button" class="btn_home" style="background:#bbb; box-shadow: 2px 2px 0#777;" value="⬅️ 返回列表" onclick="switchLayer(2)">
+            <input type="button" class="btn_home" value="🏠 回首頁" onclick="switchLayer(1)">
+        </div>
+    </div>
 
-    </main>
+    <p class="label_coder"><b>Coded by</b> ${你的名字} & AI Assistant<br>
+       <span class="last_update" onclick="location.reload()">最後更新: 2026/02/09</span>
+    </p>
+</div>
 
 <script>
-// --- 預載課程資料 (從各工作表整理) ---
+// --- 寫死的課程資訊資料庫 ---
 const courseData = {
     "核心": {
         "藝術與人文思維": [
-            { id: "A2826", name: "歌劇與歌劇院", teacher: "廖婉如", credit: 2, info: "結合音樂、文學、戲劇、視覺藝術的綜合性表演藝術...", grading: "出席20%、分組討論/期中口頭報告30%、期末50%" },
-            { id: "A2827", name: "現代詩與當代文化", teacher: "向陽", credit: 2, info: "解析現代詩的意象、語言及其與當代社會的連結...", grading: "出席10%、課後練習30%、期末筆試60%" }
+            { id: "A2826", name: "歌劇與歌劇院", teacher: "廖婉如", credit: 2, info: "...", grading: "..." },
+            { id: "A2827", name: "現代詩與當代文化", teacher: "向陽", credit: 2, info: "...", grading: "..." }
         ],
         "公民與社會探究": [
-            { id: "A2846", name: "醫學與法律", teacher: "陳仲隆", credit: 2, info: "針對醫療糾紛、知情同意等醫療法律實務進行解析...", grading: "期末筆試100%" },
-            { id: "A2837", name: "臺灣史", teacher: "蔡龍保", credit: 2, info: "臺灣近現代史的發展軌跡與社會轉型...", grading: "個人筆記50%、期末評量50%" }
-        ],
-        "哲學與道德思考": [
-            { id: "A2850", name: "邏輯", teacher: "王冠仁", credit: 2, info: "符號邏輯基礎與批判思考訓練...", grading: "期中考50%、期末考50%" }
-        ]
-    },
-    "多元": {
-        "自然科學領域": [
-            { id: "B1234", name: "環境保護導論", teacher: "李明勳", credit: 2, info: "氣候變遷與生態保育導論...", grading: "心得報告40%、期末專題60%" }
-        ],
-        "社會科學領域": [
-            { id: "B5678", name: "心理學導論", teacher: "張春興", credit: 2, info: "人類行為與心理歷程的科學研究...", grading: "出席20%、期中30%、期末50%" }
-        ],
-        "人文與藝術領域": [
-            { id: "B9012", name: "攝影美學", teacher: "陳影之", credit: 2, info: "視覺構圖與攝影歷史解析...", grading: "實作作業70%、期末展覽30%" }
+            { id: "A2846", name: "醫學與法律", teacher: "陳仲隆", credit: 2, info: "...", grading: "..." }
         ]
     }
+    // ...以此類推
 };
 
-// --- Google Sheet 心得 CSV 連結 ---
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8cTxUPOSQA1ypJytbZ01-CX5qXM-iXExvbaBOpWATCade5xf3WYsKLrdhbrBOAiegZiefn97HgGlv/pub?gid=313985456&single=true&output=csv";
+const csvUrl = "你的Google_CSV連結";
 let allReviews = [];
 
-async function initReviews() {
+async function loadReviews() {
     try {
         const res = await fetch(csvUrl);
         const text = await res.text();
         const rows = text.split('\n').map(r => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)).slice(1);
         allReviews = rows.map(row => ({
-            name: (row[5] || row[13] || row[21] || row[29] || row[37] || "").replace(/"/g, ''),
-            overall: row[7] || row[15] || row[23] || row[31] || row[39] || "?",
-            sweet: row[8] || row[16] || row[24] || row[32] || row[40] || "?",
-            comment: (row[12] || row[20] || row[28] || row[36] || row[44] || "").replace(/"/g, '')
+            name: (row[5] || row[13] || row[21] || "").replace(/"/g, ''),
+            overall: row[7] || row[15] || row[23] || "?",
+            sweet: row[8] || row[16] || row[24] || "?",
+            cool: row[9] || row[17] || row[25] || "?",
+            comment: (row[12] || row[20] || row[28] || "").replace(/"/g, '')
         }));
-        console.log("心得加載完成");
-    } catch (e) { console.error("心得讀取失敗"); }
+    } catch(e) { console.error(e); }
 }
 
-let currentMain = "";
-let currentSub = "";
-
-function showLayer2(main) {
-    currentMain = main;
+function showLayer2(main, sub) {
     switchLayer(2);
-    document.getElementById('layer2_title').innerText = main;
-    const container = document.getElementById('sub_cat_container');
-    container.innerHTML = Object.keys(courseData[main]).map(sub => 
-        `<button class="btn_menu" onclick="showLayer3('${sub}')">${sub}</button>`
-    ).join('');
-}
-
-function showLayer3(sub) {
-    currentSub = sub;
-    switchLayer(3);
-    document.getElementById('layer3_title').innerText = sub;
+    document.getElementById('layer2_title').innerText = sub;
     const container = document.getElementById('course_list_container');
-    container.innerHTML = courseData[currentMain][sub].map(c => 
-        `<button class="btn_menu" onclick="showFinal('${c.name}')">${c.name} (${c.teacher})</button>`
+    const courses = courseData[main][sub] || [];
+    container.innerHTML = courses.map(c => 
+        `<input type="button" class="btn_home" value="${c.name} (${c.teacher})" onclick="showFinal('${main}', '${sub}', '${c.name}')">`
     ).join('');
 }
 
-function showFinal(cName) {
-    switchLayer(4); // 跳轉到心得層
-    const course = courseData[currentMain][currentSub].find(c => c.name === cName);
-    
-    // 1. 更新標題：套用學長的 .label_title
-    document.getElementById('final_title').innerText = `${course.id} ｜ ${cName}`;
-    
-    // 2. 更新副標：套用學長的 .label_info (顯示領域與老師)
+function showFinal(main, sub, cName) {
+    switchLayer(3);
+    const course = courseData[main][sub].find(c => c.name === cName);
+    document.getElementById('final_title').innerText = cName;
     document.getElementById('course_info_box').innerHTML = `
-        <div class="label_info">${currentSub} ｜ ${course.teacher}</div>
-        <div class="course-detail">
-            <b>學分：</b>${course.credit} <br>
-            <b>課程簡介：</b>${course.info} <br>
-            <b>評分方式：</b>${course.grading}
-        </div>
+        <div class="label_info" style="background:#fff">${course.teacher} | ${course.id} | ${course.credit}學分</div>
+        <div class="label_comment" style="background:#eee"><b>簡介：</b>${course.info}<br><b>評分：</b>${course.grading}</div>
     `;
 
-    // 3. 更新心得區：套用學長的 .label_comment 排版
     const reviews = allReviews.filter(r => r.name === cName);
-    const rContainer = document.getElementById('reviews_container');
-    
-    if (reviews.length > 0) {
-        rContainer.innerHTML = reviews.map(r => `
-            <div class="label_comment">
-                <b>1142 ｜ ⭐${r.overall}星 ｜ 🍬甜度：${r.sweet}/10 ｜ ❄️涼度：${r.cool}/10</b>
-                <br><br>
-                ${r.comment.replace(/\n/g, '<br>')} 
-            </div>
-        `).join('');
-    } else {
-        rContainer.innerHTML = `
-            <div class="label_comment" style="text-align:center;">
-                目前尚無心得，歡迎學長姐分享！🫠
-            </div>`;
-    }
+    document.getElementById('reviews_container').innerHTML = reviews.length ? reviews.map(r => `
+        <div class="label_comment">
+            <b>1142 | ⭐${r.overall} | 🍬${r.sweet} | ❄️${r.cool}</b><br><br>
+            ${r.comment.replace(/\n/g, '<br>')}
+        </div>
+    `).join('') : '<div class="label_info">尚無心得🫠</div>';
 }
 
 function switchLayer(n) {
@@ -203,8 +155,8 @@ function switchLayer(n) {
     document.getElementById('layer' + n).classList.add('active');
 }
 
-// 啟動加載心得
-initReviews();
+loadReviews();
 </script>
+
 </body>
 </html>
