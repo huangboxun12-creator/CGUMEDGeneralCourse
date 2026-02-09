@@ -5,39 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
     <title>長庚醫學系通識分享區</title>
     <style>
+
         /* 核心 MMC 風格基礎 */
         body { background-color: #eeeeee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; }
         #index_frame { width: 100%; max-width: 600px; text-align: center; }
-        
+
         /* 標題與資訊框 (Neo-Brutalism Style) */
         .label_title { font-size: 25px; font-weight: bold; width: 100%; line-height: 24px; text-align: center; color: black; background-color: #87e967; padding: 15px; border-radius: 10px; border: 3px solid #000; display: block; box-sizing: border-box; margin-bottom: 10px; }
         .label_info { font-size: 18px; font-weight: bold; width: 100%; text-align: center; color: black; background-color: #fddb69; padding: 10px; border-radius: 10px; border: 3px solid #000; margin: 10px 0; display: block; box-sizing: border-box; }
-        
-        /* MMC 容器樣式 */
-        .index_choosebox { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; }
 
-        /* 按鈕樣式 (繼承 MMC btn_home) */
+        /* MMC 容器樣式 */
+        .index_choosebox { margin: 10px auto; background-color: #ffffff; padding: 15px; border-radius: 10px; border: 3px solid #000; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; width: 100%; }
+
+        /* 標準按鈕樣式 (Layer 1 & 2 使用) */
         .btn_home { appearance: none; width: 100%; font-size: 18px; font-weight: bold; text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 0px #29c6fa; margin: 8px 0; transition: 0.1s; white-space: pre-wrap; }
         .btn_home:active { transform: translate(2px, 2px); box-shadow: none; }
-        
+
+        /* 課程專用按鈕樣式 (Layer 3 專用，參考 MMC 強調課程資訊) */
+        .btn_course { 
+            appearance: none; width: 100%; max-width: 480px; font-size: 18px; font-weight: bold; 
+            text-align: center; color: black; background-color: #7edcfc; border-radius: 10px; 
+            padding: 12px; border: 3px solid #000; cursor: pointer; box-shadow: 3px 3px 0px #29c6fa; 
+            margin: 10px 0; white-space: pre-wrap; transition: 0.1s; display: block;
+        }
+        .btn_course:active { transform: translate(2px, 2px); box-shadow: none; }
+
         /* 功能按鈕 (我要貢獻樣式) */
-        .btn_contribution { background-color: #FFD2D7; box-shadow: 3px 3px 0px #d06f79; width: 100%; font-size: 18px; font-weight: bold; padding: 12px; border-radius: 10px; border: 3px solid #000; cursor: pointer; margin-bottom: 15px; display: block; text-decoration: none; color: black; }
+        .btn_contribution { background-color: #FFD2D7; box-shadow: 3px 3px 0px #d06f79; width: 100%; font-size: 18px; font-weight: bold; padding: 12px; border-radius: 10px; border: 3px solid #000; cursor: pointer; margin-bottom: 15px; display: block; text-decoration: none; color: black; box-sizing: border-box; }
 
         /* 心得顯示區 (套用學長 label_comment) */
         .label_comment { font-size: 16px; width: 100%; background-color: #ffffff; border-radius: 10px; padding: 15px; border: 3px solid #000; margin-bottom: 15px; text-align: left; box-sizing: border-box; line-height: 1.6; }
 
         /* 雙重導航組 */
-        .nav_group { display: flex; gap: 10px; width: 100%; margin-top: 5px; margin-bottom: 5px; }
-        .nav_group .btn_home { font-size: 16px; background-color: #bbb; box-shadow: 2px 2px 0#777; flex: 1; }
+        .nav_group { display: flex; gap: 10px; width: 100%; margin-top: 5px; margin-bottom: 5px; box-sizing: border-box; }
+        .nav_group .btn_home { font-size: 16px; background-color: #bbb; box-shadow: 2px 2px 0#777; flex: 1; margin: 0; }
         .nav_group .btn_home_active { background-color: #7edcfc; box-shadow: 2px 2px 0#29c6fa; }
 
         /* 結構層級控制 */
         .layer { display: none; width: 100%; flex-direction: column; align-items: center; }
         .active { display: flex; }
 
+        /* 響應式微調 */
         @media screen and (max-width:600px){
             #index_frame { width: 95%; }
+            .btn_course, .btn_home, .label_title, .label_info, .index_choosebox, .btn_contribution, .label_comment { width: 100% !important; }
         }
+        
     </style>
 </head>
 
@@ -152,9 +165,18 @@ function showLayer3(sub) {
     switchLayer(3);
     document.getElementById('layer3_title').innerText = "課程清單：" + sub;
     const container = document.getElementById('course_list_container');
-    container.innerHTML = courseData[curMain][sub].map(c => 
-        `<button class="btn_home" onclick="showFinal('${c.name}')">${c.name} (${c.teacher})</button>`
-    ).join('');
+    
+    // 取得該領域下的所有課程資料
+    const courses = courseData[curMain][sub] || [];
+    
+    // 渲染按鈕：參考 MMC 格式 -> 課程代碼｜課程名稱 (老師名字)
+    container.innerHTML = courses.map(c => `
+        <div>
+            <input type="button" class="btn_course" 
+                   value="${c.id}｜${c.name} (${c.teacher})" 
+                   onclick="showFinal('${c.name}')">
+        </div>
+    `).join('');
 }
 
 function showFinal(cName) {
