@@ -62,8 +62,8 @@
     <div id="layer1" class="layer active">
         <label class="label_info">請選擇通識類別</label>
         <div class="index_choosebox">
-            <button class="btn_home" onclick="showLayer2('核心')">核心通識 (天、地、人、我)</button>
-            <button class="btn_home" onclick="showLayer2('多元')">多元通識 (自然、社會、人文)</button>
+            <button class="btn_home" onclick="showLayer2('核心')">核心通識</button>
+            <button class="btn_home" onclick="showLayer2('多元')">多元通識</button>
         </div>
         <a href="https://forms.gle/6yTjFRWBnxJTjLMT8" target="_blank" class="btn_contribution">✍️ 我要投稿心得 (點我)</a>
     </div>
@@ -110,10 +110,10 @@
 // --- 預載課程資料 (請將您的 Sheet 資料填入此處) ---
 const courseData = {
     "核心": {
-        "藝術與人文思維 (人)": [
+        "藝術與人文思維": [
             { id: "A2826", name: "歌劇與歌劇院", teacher: "廖婉如", credit: 2, info: "音樂藝術介紹", grading: "期末50%" }
         ],
-        "公民與社會探究 (地)": [
+        "公民與社會探究": [
             { id: "A2846", name: "醫學與法律", teacher: "陳仲隆", credit: 2, info: "法律實務", grading: "期末100%" }
         ]
     },
@@ -202,7 +202,7 @@ function showFinal(cName) {
         rContainer.innerHTML = `
             <div class="label_info" style="background-color: #fddb69; margin-top: 20px;">
                 目前尚無心得，歡迎大家投稿！✨<br>
-                <small>(點擊上方粉紅色按鈕即可分享你的經驗)</small>
+                <small>(點擊首頁下方粉紅色按鈕即可分享您的經驗)</small>
             </div>`;
     }
 }
