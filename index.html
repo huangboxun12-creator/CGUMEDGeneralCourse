@@ -246,7 +246,10 @@ function showFinal(cName) {
     document.getElementById('final_title').innerText = `${course.id} ｜ ${cName}`;
     document.getElementById('course_info_box').innerHTML = `
         <div class="label_info">${course.teacher} | ${course.credit}學分</div>
-        <div class="label_comment" style="background:#f9f9f9"><b>簡介：</b>${course.info}<br><b>評分：</b>${course.grading}</div>
+        <div class="label_comment" style="background:#f9f9f9">
+            <b>📖 課程簡介：</b><br>${course.info.replace(/\n/g, '<br>')}<br><br>
+            <b>📝 評分方式：</b><br>${course.grading.replace(/\n/g, '<br>')}
+        </div>
     `;
 
     const reviews = allReviews.filter(r => r.name === cName);
