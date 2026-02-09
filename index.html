@@ -20,14 +20,23 @@
         .btn_group_nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            width: 90%;
-            max-width: 500px;
-        }
-        .btn_group_nav .btn_back {
-            flex: 1; /* 讓兩個按鈕平分寬度 */
+            gap: 15px; /* 按鈕之間的間距 */
+            width: 95%;
+            max-width: 600px;
             margin-bottom: 10px;
         }
+
+        .btn_group_nav .btn_back {
+            flex: 1; /* 讓兩個按鈕平分寬度 */
+            margin: 0; /* 移除原本預設的 margin 避免跑位 */
+        }
+
+        @media screen and (max-width:600px) {
+            .btn_group_nav {
+                width: 90%;
+            }
+        }
+        
         </style>
 </head>
 <body>
@@ -49,7 +58,11 @@
         </div>
 
         <div id="layer3" class="layer">
-            <button class="btn_menu btn_back" onclick="switchLayer(2)">⬅️ 返回領域</button>
+            <div class="btn_group_nav">
+                <button class="btn_menu btn_back" onclick="switchLayer(2)">⬅️ 返回領域</button>
+                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+            </div>
+    
             <div id="layer3_title" class="label_info"></div>
             <div id="course_list_container" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
         </div>
