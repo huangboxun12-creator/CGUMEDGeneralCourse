@@ -43,12 +43,23 @@
         </div>
 
         <div id="layer4" class="layer">
-            <button class="btn_menu btn_back" onclick="switchLayer(3)">⬅️ 返回清單</button>
-            <div id="final_title" class="label_title"></div>
-            <div id="course_info_box" class="label_comment"></div>
-            <div id="reviews_container" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
-        </div>
+            <div class="btn_group_nav">
+                <button class="btn_menu btn_back" onclick="switchLayer(3)">⬅️ 返回課程列表</button>
+                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+            </div>
 
+            <div id="final_title" class="label_title"></div>
+            <div id="course_info_box" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
+    
+            <div id="reviews_container" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
+
+            <div class="btn_group_nav" style="margin-top: 20px; margin-bottom: 50px;">
+                <button class="btn_menu btn_back" onclick="switchLayer(3)">⬅️ 返回課程列表</button>
+                <button class="btn_menu btn_back" style="background-color:#7edcfc; color:black;" onclick="switchLayer(1)">🏠 回首頁</button>
+            </div>
+        </div>
+        
+        
     </main>
 
 <script>
