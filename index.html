@@ -123,23 +123,40 @@ function showLayer3(sub) {
 }
 
 function showFinal(cName) {
-    switchLayer(4);
+    switchLayer(4); // 跳轉到心得層
     const course = courseData[currentMain][currentSub].find(c => c.name === cName);
-    document.getElementById('final_title').innerText = cName;
+    
+    // 1. 更新標題：套用學長的 .label_title
+    document.getElementById('final_title').innerText = `${course.id} ｜ ${cName}`;
+    
+    // 2. 更新副標：套用學長的 .label_info (顯示領域與老師)
     document.getElementById('course_info_box').innerHTML = `
-        <b>👨‍🏫 授課教師：</b>${course.teacher}<br>
-        <b>🆔 開課序號：</b>${course.id} | <b>🎓 學分：</b>${course.credit}<br>
-        <hr>
-        <b>📖 課程簡介：</b><br>${course.info}<br><br>
-        <b>📝 評分方式：</b><br>${course.grading}
+        <div class="label_info">${currentSub} ｜ ${course.teacher}</div>
+        <div class="course-detail">
+            <b>學分：</b>${course.credit} <br>
+            <b>課程簡介：</b>${course.info} <br>
+            <b>評分方式：</b>${course.grading}
+        </div>
     `;
 
+    // 3. 更新心得區：套用學長的 .label_comment 排版
     const reviews = allReviews.filter(r => r.name === cName);
     const rContainer = document.getElementById('reviews_container');
-    rContainer.innerHTML = reviews.length ? reviews.map(r => `
-        <div class="label_info">⭐評分: ${r.overall}/5 | 🍬甜度: ${r.sweet}/10</div>
-        <div class="label_comment">${r.comment || "這位同學很神祕，什麼都沒寫🫠"}</div>
-    `).join('') : '<div class="label_info">目前尚無心得，快來當第一個分享者吧！</div>';
+    
+    if (reviews.length > 0) {
+        rContainer.innerHTML = reviews.map(r => `
+            <div class="label_comment">
+                <b>1142 ｜ ⭐${r.overall}星 ｜ 🍬甜度：${r.sweet}/10 ｜ ❄️涼度：${r.cool}/10</b>
+                <br><br>
+                ${r.comment.replace(/\n/g, '<br>')} 
+            </div>
+        `).join('');
+    } else {
+        rContainer.innerHTML = `
+            <div class="label_comment" style="text-align:center;">
+                目前尚無心得，歡迎學長姐分享！🫠
+            </div>`;
+    }
 }
 
 function switchLayer(n) {
