@@ -13,3 +13,23 @@ header { background: #003a6c; color: white; text-align: center; padding: 40px 20
 .score-tag { background: #e7eff6; color: #003a6c; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; }
 .comment { background: #f9f9f9; padding: 15px; border-radius: 8px; color: #555; font-size: 0.95rem; line-height: 1.6; border-left: 4px solid #ddd; }
 .timestamp { font-size: 0.7rem; color: #bbb; margin-top: 15px; text-align: right; }
+.btn_group_nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 95%;
+    max-width: 600px;
+}
+
+.btn_group_nav .btn_back {
+    flex: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 12px; /* 稍微縮小一點點，讓雙按鈕更好擠進去 */
+}
+
+@media screen and (max-width:600px) {
+    .label_title, .label_info, .label_comment, .btn_menu {
+        width: 90% !important; /* 強制手機版寬度 */
+    }
+}
